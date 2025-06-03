@@ -1,0 +1,102 @@
+@use "sass:math";
+@use "sass:color";
+
+@mixin font-face($fontFamily, $path, $fontWeight, $fontStyle) {
+	@font-face {
+		font-family: "#{$fontFamily}";
+		src: url("#{$path}.woff2") format("woff2");
+		font-weight: $fontWeight;
+		font-style: $fontStyle;
+		font-display: swap;
+	}
+}
+
+@mixin ibg($fit: cover, $position: center) {
+	position: relative;
+	// padding-bottom: value%;
+	img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		object-fit: $fit;
+		object-position: $position;
+	}
+}
+
+@mixin sbg($fit: cover, $position: center) {
+	position: relative;
+	// padding-bottom: value%;
+	svg {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		object-fit: $fit;
+		object-position: $position;
+	}
+}
+
+@mixin flex-center($isInline: false) {
+	@if $isInline {
+		display: inline-flex;
+	} @else {
+		display: flex;
+	}
+	justify-content: center;
+	align-items: center;
+}
+
+@mixin abs-center() {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@mixin square($size) {
+	width: math.div($size, 16) + rem;
+	height: math.div($size, 16) + rem;
+}
+
+@mixin hide {
+	opacity: 0;
+	visibility: hidden;
+}
+
+@mixin show {
+	opacity: 1;
+	visibility: visible;
+}
+
+@mixin visually-hidden {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	margin: -1px !important;
+	border: 0 !important;
+	padding: 0 !important;
+	white-space: nowrap !important;
+	clip-path: inset(100%) !important;
+	clip: rect(0 0 0 0) !important;
+	overflow: hidden !important;
+}
+
+@mixin text-ellipsis($number-of-lines: 1) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	@if $number-of-lines == 1 {
+		white-space: nowrap;
+	} @else {
+		white-space: inherit;
+
+		@supports (-webkit-line-clamp: $number-of-lines) {
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: $number-of-lines;
+		}
+	}
+}

@@ -1,0 +1,34 @@
+@use "@/styles/helpers" as *;
+
+:root {
+	color-scheme: light;
+
+	--gray-50: #fafafa;
+	--gray-100: #f4f4f5;
+	--gray-200: #e4e4e7;
+	--gray-300: #d4d4d8;
+	--gray-400: #9f9fa9;
+	--gray-500: #71717b;
+	--gray-600: #52525c;
+	--gray-700: #3f3f47;
+	--gray-800: #27272a;
+	--gray-900: #18181b;
+	--gray-950: #09090b;
+
+	--brand-50: #f0f9ff;
+	--brand-100: #dff2fe;
+	--brand-200: #b8e6fe;
+	--brand-300: #73d4ff;
+	--brand-400: #00bcff;
+	--brand-500: #00a6f4;
+	--brand-600: #0084d1;
+	--brand-700: #0069a8;
+	--brand-800: #00598a;
+	--brand-900: #024a70;
+	--brand-950: #052f4a;
+
+	--font-family:
+		"Inter", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+	--transition-duration: 0.2s;
+}

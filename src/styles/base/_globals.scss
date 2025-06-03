@@ -1,0 +1,53 @@
+@use "@/styles/helpers" as *;
+
+html {
+	-webkit-tap-highlight-color: transparent;
+
+	// height: 100%;
+	scroll-behavior: smooth;
+	// scroll-padding-top: 0;
+	// scrollbar-gutter: stable;
+	// scrollbar-color: var(--color-scrollbar) var(--color-bg);
+
+	// &.is-lock {
+	// 	overflow: hidden !important;
+	// }
+}
+
+body {
+	font-family: var(--font-family);
+	font-size: to-rem(16);
+	font-weight: 400;
+	line-height: 1.5;
+
+	color: var(--gray-950);
+	background-color: var(--gray-100);
+}
+
+// a,
+// button,
+// label,
+// input,
+// textarea,
+// select,
+// svg * {
+// 	transition-duration: var(--transition-duration);
+// }
+
+// a {
+// 	color: inherit;
+
+// 	@include hover {
+// 		color: var(--color-accent);
+// 	}
+
+// 	&[class] {
+// 		text-decoration: none;
+// 	}
+// }
+
+// :focus-visible {
+// 	outline: to-rem(2) dashed var(--color-text);
+// 	// outline-offset: to-rem(2);
+// 	transition-duration: 0s !important;
+// }

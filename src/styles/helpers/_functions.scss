@@ -1,0 +1,58 @@
+@use "sass:math";
+
+// calc(10px + (40 - 10) * ((100vw - 320px) / (1440 - 320)))
+@function fluid($max, $min, $maxWidth: 1440, $minWidth: 360) {
+	// convert to rem
+	$max: math.div($max, 16);
+	$min: math.div($min, 16);
+	$maxWidth: math.div($maxWidth, 16);
+	$minWidth: math.div($minWidth, 16);
+
+	// do calculations
+	$slope: math.div(($max - $min), ($maxWidth - $minWidth));
+	$yAxisIntersection: -$minWidth * $slope + $min;
+
+	@return clamp(#{$min * 1rem}, #{$yAxisIntersection * 1rem} + #{$slope * 100vw}, #{$max * 1rem});
+}
+
+@function to-rem($px) {
+	@return math.div($px, 16) + rem;
+}
+
+@function to-em($px, $current: 16) {
+	@return math.div($px, $current) + em;
+}
+
+@function to-pct($value, $total) {
+	@return math.div($value, $total) * 100%;
+}
+
+@function color-contrast($color) {
+	$color-brightness: math.round(
+		(color.red($color) * 299) + (color.green($color) * 587) + math.div(color.blue($color) * 114, 1000)
+	);
+	$light-color: math.round(
+		(color.red(#fff) * 299) + (color.green(#fff) * 587) + math.div(color.blue(#fff) * 114, 1000)
+	);
+
+	@if abs($color-brightness) < math.div($light-color, 2) {
+		@return #ffffff;
+	} @else {
+		@return #000000;
+	}
+}
+
+// @function fluid-prop($minSize, $maxSize, $minWidth, $maxWidth) {
+// 	// convert to rem
+// 	$minSize: math.div($minSize, 16);
+// 	$maxSize: math.div($maxSize, 16);
+// 	$minWidth: math.div($minWidth, 16);
+// 	$maxWidth: math.div($maxWidth, 16);
+
+// 	// do calculations
+// 	$delta: $maxSize - $minSize;
+
+// 	@return calc(
+// 		#{$minSize * 1rem} + #{$delta} * ((100vw - #{$minWidth * 1rem}) / (#{$maxWidth} - #{$minWidth}))
+// 	);
+// }

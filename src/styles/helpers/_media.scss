@@ -1,0 +1,58 @@
+@use "mixins" as *;
+@use "functions" as *;
+
+$desktop: 1280.98;
+$tablet: 1023.98;
+$mobile: 767.98;
+
+@mixin desktop-above {
+	@media (width > to-em($desktop)) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (width <= to-em($desktop)) {
+		@content;
+	}
+}
+
+@mixin tablet-above {
+	@media (width > to-em($tablet)) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (width <= to-em($tablet)) {
+		@content;
+	}
+}
+
+@mixin mobile-above {
+	@media (width > to-em($mobile)) {
+		@content;
+	}
+}
+
+@mixin mobile {
+	@media (width <= to-em($mobile)) {
+		@content;
+	}
+}
+
+@mixin hover($hasActiveEffectOnMobile: true) {
+	@media (any-hover: hover) {
+		&:hover {
+			@content;
+		}
+	}
+
+	@if ($hasActiveEffectOnMobile) {
+		@media (any-hover: none) {
+			&:active {
+				@content;
+			}
+		}
+	}
+}
