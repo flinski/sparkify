@@ -1,0 +1,17 @@
+@use "@/styles/helpers" as *;
+
+.logo {
+	display: flex;
+	align-items: center;
+	column-gap: to-rem(4);
+	color: var(--brand-500);
+
+	svg {
+		flex-shrink: 0;
+	}
+
+	span {
+		font-size: to-rem(20);
+		font-weight: 500;
+	}
+}
