@@ -1,0 +1,11 @@
+@use "@/styles/helpers" as *;
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	row-gap: to-rem(24);
+	width: to-rem(250);
+	padding: to-rem(8);
+	background-color: var(--gray-50);
+	border-right: 1px solid var(--gray-200);
+}

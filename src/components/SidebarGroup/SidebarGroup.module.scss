@@ -1,0 +1,45 @@
+@use "@/styles/helpers" as *;
+
+.sidebarGroup {
+}
+
+.title {
+	padding: to-rem(8);
+	font-size: to-rem(12);
+	font-weight: 500;
+	line-height: 1.5;
+	letter-spacing: to-em(0.36, 12);
+	text-transform: uppercase;
+	color: var(--gray-500);
+}
+
+.navigation {
+	display: flex;
+	flex-direction: column;
+	row-gap: to-rem(2);
+
+	a {
+		display: flex;
+		align-items: center;
+		column-gap: to-rem(6);
+		padding: to-rem(8);
+		font-size: to-rem(14);
+		text-decoration: none;
+		color: var(--gray-500);
+		border-radius: var(--border-radius);
+
+		&:hover {
+			background-color: var(--gray-100);
+		}
+
+		&:global(.active) {
+			font-weight: 500;
+			color: var(--gray-950);
+			background-color: var(--gray-100);
+		}
+
+		svg {
+			flex-shrink: 0;
+		}
+	}
+}
