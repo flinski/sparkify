@@ -1,0 +1,7 @@
+@use "@/styles/helpers" as *;
+
+.appLayout {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
