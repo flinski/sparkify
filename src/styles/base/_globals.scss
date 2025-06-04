@@ -1,5 +1,14 @@
 @use "@/styles/helpers" as *;
 
+* {
+	outline: none;
+}
+
+*::selection {
+	color: var(--brand-950);
+	background-color: var(--brand-200);
+}
+
 html {
 	-webkit-tap-highlight-color: transparent;
 
@@ -47,7 +56,7 @@ body {
 // }
 
 // :focus-visible {
-// 	outline: to-rem(2) dashed var(--color-text);
+// 	outline: to-rem(2) dashed red;
 // 	// outline-offset: to-rem(2);
 // 	transition-duration: 0s !important;
 // }
