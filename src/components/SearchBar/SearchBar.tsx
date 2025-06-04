@@ -8,7 +8,7 @@ export default function SearchBar() {
 				<button>
 					<SearchIcon />
 				</button>
-				<input type="text" placeholder="Search music..." />
+				<input type="text" placeholder="Search music..." name="search" />
 			</div>
 		</div>
 	)

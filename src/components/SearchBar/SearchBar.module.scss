@@ -7,6 +7,7 @@
 }
 
 .searchBarWrapper {
+	position: relative;
 	display: flex;
 	height: to-rem(36);
 	border: 1px solid var(--gray-200);
@@ -19,6 +20,18 @@
 
 	&:has(input:focus-visible) {
 		background-color: var(--gray-100);
+	}
+
+	&::after {
+		content: "Ctrl + K";
+		display: block;
+		position: absolute;
+		top: 50%;
+		right: to-rem(12);
+		transform: translateY(-50%);
+		font-size: to-rem(14);
+		color: var(--gray-500);
+		cursor: text;
 	}
 
 	button {
@@ -42,7 +55,7 @@
 	input {
 		width: to-rem(314);
 		padding: 0;
-		padding-right: to-rem(8);
+		padding-right: to-rem(68);
 		font-size: to-rem(14);
 		line-height: 1.5;
 		color: var(--gray-950);

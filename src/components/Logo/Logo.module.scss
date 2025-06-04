@@ -5,14 +5,15 @@
 	align-items: center;
 	column-gap: to-rem(4);
 	margin-right: to-rem(141);
-	color: var(--brand-500);
 
 	svg {
 		flex-shrink: 0;
+		color: var(--brand-500);
 	}
 
 	span {
 		font-size: to-rem(20);
 		font-weight: 500;
+		color: var(--brand-950);
 	}
 }
