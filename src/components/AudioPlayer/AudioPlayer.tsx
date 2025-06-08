@@ -1,3 +1,5 @@
+import styles from "./AudioPlayer.module.scss"
+
 export default function AudioPlayer() {
-	return <div>AudioPlayer</div>
+	return <div className={styles.audioPlayer}>AudioPlayer</div>
 }

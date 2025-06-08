@@ -1,0 +1,7 @@
+@use "@/styles/helpers" as *;
+
+.audioPlayer {
+	background-color: var(--gray-50);
+	border: var(--border);
+	border-radius: var(--border-radius);
+}

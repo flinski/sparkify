@@ -5,7 +5,7 @@ export default function Logo() {
 	return (
 		<div className={styles.logo}>
 			<LogoIcon />
-			<span>Shimify</span>
+			<span>Sparkify</span>
 		</div>
 	)
 }

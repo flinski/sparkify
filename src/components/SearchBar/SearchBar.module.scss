@@ -10,7 +10,7 @@
 	position: relative;
 	display: flex;
 	height: to-rem(36);
-	border: 1px solid var(--gray-200);
+	border: var(--border);
 	border-radius: var(--border-radius);
 	transition-duration: var(--transition-duration);
 

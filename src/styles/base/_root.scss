@@ -27,11 +27,13 @@
 	--brand-900: #024a70;
 	--brand-950: #052f4a;
 
+	--border: 1px solid var(--gray-200);
 	--border-radius: #{to-rem(8)};
 	--border-radius-small: #{to-rem(4)};
 
 	--font-family:
-		"Inter", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+		"Inter", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+		"Segoe UI Emoji";
 
 	--transition-duration: 0.2s;
 }

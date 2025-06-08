@@ -29,7 +29,8 @@
 
 @function color-contrast($color) {
 	$color-brightness: math.round(
-		(color.red($color) * 299) + (color.green($color) * 587) + math.div(color.blue($color) * 114, 1000)
+		(color.red($color) * 299) + (color.green($color) * 587) +
+			math.div(color.blue($color) * 114, 1000)
 	);
 	$light-color: math.round(
 		(color.red(#fff) * 299) + (color.green(#fff) * 587) + math.div(color.blue(#fff) * 114, 1000)
