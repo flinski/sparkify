@@ -1,7 +1,7 @@
 import { NavLink } from "react-router"
 
 import SidebarGroup from "@/components/SidebarGroup/SidebarGroup"
-import TracksIcon from "@/components/icons/TracksIcon"
+import SongsIcon from "@/components/icons/SongsIcon"
 import AlbumsIcon from "@/components/icons/AlbumsIcon"
 import ArtistsIcon from "@/components/icons/ArtistsIcon"
 
@@ -12,8 +12,8 @@ export default function Sidebar() {
 		<aside className={styles.sidebar}>
 			<SidebarGroup title="Menu">
 				<NavLink to="/">
-					<TracksIcon />
-					<span>Tracks</span>
+					<SongsIcon />
+					<span>Songs</span>
 				</NavLink>
 				<NavLink to="/albums">
 					<AlbumsIcon />
