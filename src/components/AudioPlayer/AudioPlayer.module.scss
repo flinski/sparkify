@@ -1,6 +1,7 @@
 @use "@/styles/helpers" as *;
 
 .audioPlayer {
+	padding: to-rem(10);
 	background-color: var(--gray-50);
 	border: var(--border);
 	border-radius: var(--border-radius);

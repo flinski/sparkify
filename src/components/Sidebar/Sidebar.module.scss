@@ -1,6 +1,7 @@
 @use "@/styles/helpers" as *;
 
 .sidebar {
+	flex-shrink: 0;
 	display: flex;
 	flex-direction: column;
 	row-gap: to-rem(24);
