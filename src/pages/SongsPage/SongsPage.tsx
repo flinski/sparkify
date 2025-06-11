@@ -1,16 +1,20 @@
-import { useQuery } from "@tanstack/react-query"
-import { getSongs } from "@/services/apiSongs"
+import { useSongs } from "@/hooks/useSongs"
 import Spinner from "@/components/Spinner/Spinner"
+import Message from "@/components/Message/Message"
 
 export default function SongsPage() {
-	const { isLoading, error, data: songs } = useQuery({ queryKey: ["songs"], queryFn: getSongs })
+	const { isLoading, error, songs } = useSongs()
 
 	if (isLoading) {
 		return <Spinner options={{ color: "var(--gray-300)", isCentered: true }} />
 	}
 
 	if (error) {
-		return <div>Something went wrong. Please try again later.</div>
+		return (
+			<Message options={{ isCentered: true }}>
+				Something went wrong. Please try again later.
+			</Message>
+		)
 	}
 
 	console.log(songs)
