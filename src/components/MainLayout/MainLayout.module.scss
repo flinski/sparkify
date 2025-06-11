@@ -3,5 +3,6 @@
 .mainLayout {
 	flex-grow: 1;
 	display: flex;
+	column-gap: to-rem(12);
 	overflow: hidden;
 }
