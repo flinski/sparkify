@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query"
 import { getSongs } from "@/services/apiSongs"
+import Spinner from "@/components/Spinner/Spinner"
 
 export default function SongsPage() {
 	const { isLoading, error, data: songs } = useQuery({ queryKey: ["songs"], queryFn: getSongs })
 
 	if (isLoading) {
-		return <div>Loading...</div>
+		return <Spinner options={{ color: "var(--gray-300)", isCentered: true }} />
 	}
 
 	if (error) {
