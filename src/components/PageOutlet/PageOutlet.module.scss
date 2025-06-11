@@ -2,6 +2,7 @@
 
 .pageOutlet {
 	flex-grow: 1;
+	padding: to-rem(16);
 	overflow: auto;
 	background-color: var(--gray-50);
 	border: var(--border);

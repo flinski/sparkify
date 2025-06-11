@@ -1,6 +1,7 @@
 import { useSongs } from "@/hooks/useSongs"
 import Spinner from "@/components/Spinner/Spinner"
 import Message from "@/components/Message/Message"
+import Heading from "@/components/Heading/Heading"
 
 export default function SongsPage() {
 	const { isLoading, error, songs } = useSongs()
@@ -19,5 +20,9 @@ export default function SongsPage() {
 
 	console.log(songs)
 
-	return <div>Songs Page</div>
+	return (
+		<div>
+			<Heading>Songs</Heading>
+		</div>
+	)
 }

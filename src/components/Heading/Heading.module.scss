@@ -1,0 +1,10 @@
+@use "@/styles/helpers" as *;
+
+.heading {
+	padding-inline: to-rem(16);
+	padding-block: to-rem(8);
+	margin: 0;
+	font-size: to-rem(32);
+	font-weight: 700;
+	line-height: 1.2;
+}
