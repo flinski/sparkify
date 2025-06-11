@@ -7,6 +7,7 @@ import AppLayout from "@/components/AppLayout/AppLayout"
 import SongsPage from "@/pages/SongsPage/SongsPage"
 import AlbumsPage from "@/pages/AlbumsPage/AlbumsPage"
 import ArtistsPage from "@/pages/ArtistsPage/ArtistsPage"
+import NotFoundPage from "@/pages/NotFoundPage/NotFoundPage"
 
 const queryClient = new QueryClient()
 
@@ -20,6 +21,7 @@ export default function App() {
 						<Route path="albums" element={<AlbumsPage />} />
 						<Route path="artists" element={<ArtistsPage />} />
 					</Route>
+					<Route path="*" element={<NotFoundPage />} />
 				</Routes>
 			</BrowserRouter>
 			<ReactQueryDevtools initialIsOpen={false} />
