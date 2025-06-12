@@ -10,4 +10,9 @@
 	background-color: var(--gray-50);
 	border: var(--border);
 	border-radius: var(--border-radius-huge);
+
+	svg {
+		width: to-rem(18);
+		height: to-rem(18);
+	}
 }
