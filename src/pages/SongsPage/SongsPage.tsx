@@ -2,6 +2,7 @@ import { useSongs } from "@/hooks/useSongs"
 import Spinner from "@/components/Spinner/Spinner"
 import Message from "@/components/Message/Message"
 import Heading from "@/components/Heading/Heading"
+import SongList from "@/components/SongList/SongList"
 
 export default function SongsPage() {
 	const { isLoading, error, songs } = useSongs()
@@ -23,6 +24,7 @@ export default function SongsPage() {
 	return (
 		<div>
 			<Heading>Songs</Heading>
+			{songs ? <SongList songs={songs} /> : null}
 		</div>
 	)
 }
