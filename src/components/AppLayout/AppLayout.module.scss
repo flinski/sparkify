@@ -1,9 +1,9 @@
 @use "@/styles/helpers" as *;
 
 .appLayout {
-	padding: to-rem(16);
+	padding: to-rem(12);
 	display: flex;
 	flex-direction: column;
-	row-gap: to-rem(12);
+	row-gap: to-rem(8);
 	height: 100vh;
 }

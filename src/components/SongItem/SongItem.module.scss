@@ -5,8 +5,9 @@
 	grid-auto-rows: to-rem(56);
 	grid-template-columns: to-rem(56) to-rem(44) 1fr 1fr 1fr to-rem(56);
 	align-items: center;
+	padding-right: to-rem(8);
 	font-size: to-rem(14);
-	border-radius: var(--border-radius);
+	border-radius: var(--border-radius-huge);
 
 	&:hover {
 		background-color: var(--gray-100);
@@ -23,7 +24,9 @@
 	position: relative;
 	aspect-ratio: 1;
 	overflow: hidden;
-	border-radius: to-rem(6);
+	border: 1px solid var(--gray-100);
+	border-radius: var(--border-radius);
+	// box-shadow: 0 2px 0px var(--gray-900);
 
 	img {
 		position: absolute;

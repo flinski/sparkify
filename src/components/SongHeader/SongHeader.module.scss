@@ -1,0 +1,34 @@
+@use "@/styles/helpers" as *;
+
+.songHeader {
+	display: grid;
+	grid-auto-rows: to-rem(36);
+	grid-template-columns: to-rem(56) to-rem(44) 1fr 1fr 1fr to-rem(56);
+	align-items: center;
+	padding-right: to-rem(8);
+	margin-bottom: to-rem(8);
+	font-size: to-rem(12);
+	font-weight: 500;
+	color: var(--gray-500);
+	border-bottom: var(--border);
+}
+
+.songIndex {
+	text-align: center;
+	font-variant-numeric: tabular-nums;
+}
+
+.songTitle {
+	margin-left: to-rem(12);
+}
+
+.songArtist {
+}
+
+.songAlbum {
+}
+
+.songDuration {
+	text-align: center;
+	font-variant-numeric: tabular-nums;
+}

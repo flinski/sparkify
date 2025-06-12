@@ -28,8 +28,11 @@
 	--brand-950: #052f4a;
 
 	--border: 1px solid var(--gray-200);
+	--border-radius-huge: #{to-rem(16)};
+	--border-radius-big: #{to-rem(12)};
 	--border-radius: #{to-rem(8)};
-	--border-radius-small: #{to-rem(4)};
+	--border-radius-small: #{to-rem(6)};
+	--border-radius-tiny: #{to-rem(4)};
 
 	--font-family:
 		"Inter", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",

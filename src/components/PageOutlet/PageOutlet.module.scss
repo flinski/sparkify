@@ -2,9 +2,14 @@
 
 .pageOutlet {
 	flex-grow: 1;
-	padding: to-rem(16);
-	overflow: auto;
+	overflow: hidden;
 	background-color: var(--gray-50);
 	border: var(--border);
-	border-radius: var(--border-radius);
+	border-radius: var(--border-radius-huge);
+}
+
+.pageContent {
+	height: 100%;
+	overflow: auto;
+	padding: to-rem(16);
 }

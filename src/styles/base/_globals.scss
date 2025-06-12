@@ -2,6 +2,7 @@
 
 * {
 	outline: none;
+	scrollbar-color: var(--gray-400) var(--gray-50);
 }
 
 *::selection {
@@ -28,9 +29,20 @@ body {
 	font-size: to-rem(16);
 	font-weight: 400;
 	line-height: 1;
+	font-smooth: antialised;
 
 	color: var(--gray-950);
 	background-color: var(--gray-100);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	padding: 0;
 }
 
 ul,
