@@ -1,0 +1,6 @@
+@use "@/styles/helpers" as *;
+
+.albumList {
+	display: flex;
+	flex-wrap: wrap;
+}
