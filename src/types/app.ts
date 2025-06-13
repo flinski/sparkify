@@ -12,7 +12,7 @@ export type TApiArtist = {
 	name: string
 }
 
-export type TApiAlbum = {
+export type TApiInitialAlbum = {
 	cover_url: string
 	created_at: string
 	id: string
@@ -20,8 +20,19 @@ export type TApiAlbum = {
 	title: string
 }
 
+export type TApiAlbum = {
+	cover_url: string
+	created_at: string
+	id: string
+	release_date: string
+	title: string
+	artists: {
+		artist: TApiArtist
+	}[]
+}
+
 export type TApiSong = {
-	album: TApiAlbum | null
+	album: TApiInitialAlbum | null
 	album_id: string | null
 	artists: {
 		artist: TApiArtist
@@ -35,7 +46,7 @@ export type TApiSong = {
 }
 
 export type TApiFormattedSong = {
-	album: TApiAlbum | null
+	album: TApiInitialAlbum | null
 	album_id: string | null
 	artists: TApiArtist[]
 	audio_url: string
@@ -43,4 +54,13 @@ export type TApiFormattedSong = {
 	duration: number
 	id: string
 	title: string
+}
+
+export type TApiFormattedAlbum = {
+	cover_url: string
+	created_at: string
+	id: string
+	release_date: string
+	title: string
+	artists: TApiArtist[]
 }

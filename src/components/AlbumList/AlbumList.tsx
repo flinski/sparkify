@@ -1,9 +1,9 @@
-import type { TApiAlbum } from "@/types/app"
+import type { TApiFormattedAlbum } from "@/types/app"
 import AlbumItem from "@/components/AlbumItem/AlbumItem"
-import styles from './AlbumList.module.scss'
+import styles from "./AlbumList.module.scss"
 
 interface Props {
-	albums: TApiAlbum[]
+	albums: TApiFormattedAlbum[]
 }
 
 export default function AlbumList({ albums }: Props) {

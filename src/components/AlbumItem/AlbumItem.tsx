@@ -1,11 +1,13 @@
-import type { TApiAlbum } from "@/types/app"
+import type { TApiFormattedAlbum } from "@/types/app"
 import styles from "./AlbumItem.module.scss"
 
 interface Props {
-	album: TApiAlbum
+	album: TApiFormattedAlbum
 }
 
 export default function AlbumItem({ album }: Props) {
+	const artists = album.artists.map((artist) => artist.name).join(" & ")
+
 	return (
 		<li className={styles.albumItem}>
 			<div className={styles.albumCover}>
@@ -17,7 +19,7 @@ export default function AlbumItem({ album }: Props) {
 					{new Date(album.release_date).getFullYear()}
 				</span>
 				<span> • </span>
-				<span className={styles.albumArtist}>Artist</span>
+				<span className={styles.albumArtist}>{artists}</span>
 			</div>
 		</li>
 	)
