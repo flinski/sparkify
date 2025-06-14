@@ -1,0 +1,40 @@
+@use "@/styles/helpers" as *;
+
+.songInfo {
+	display: inline-flex;
+	align-items: center;
+	column-gap: to-rem(8);
+}
+
+.songCover {
+	position: relative;
+	width: to-rem(52);
+	height: to-rem(52);
+	overflow: hidden;
+	border-radius: var(--border-radius);
+	box-shadow: 0 to-rem(2) to-rem(8) hsl(0, 0%, 0%, 0.2);
+
+	img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+	}
+}
+
+.songTitleAndArtist {
+	display: flex;
+	flex-direction: column;
+	row-gap: to-rem(2);
+}
+
+.songTitle {
+}
+
+.songArtist {
+	font-size: to-rem(14);
+	color: var(--gray-500);
+}

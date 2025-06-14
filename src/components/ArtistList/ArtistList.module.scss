@@ -1,0 +1,6 @@
+@use "@/styles/helpers" as *;
+
+.artistList {
+	display: flex;
+	flex-wrap: wrap;
+}

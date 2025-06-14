@@ -1,5 +1,5 @@
-import type { TApiAlbum, TApiFormattedAlbum } from "@/types/app"
 import supabase from "./supabase"
+import type { TApiAlbum, TApiFormattedAlbum } from "@/types/app"
 import type { PostgrestError } from "@supabase/supabase-js"
 
 export async function getAlbums(): Promise<TApiFormattedAlbum[]> {

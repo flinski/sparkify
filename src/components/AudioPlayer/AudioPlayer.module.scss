@@ -2,7 +2,8 @@
 
 .audioPlayer {
 	flex-shrink: 0;
-	height: to-rem(72);
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
 	padding: to-rem(10);
 	background-color: var(--gray-50);
 	border: var(--border);

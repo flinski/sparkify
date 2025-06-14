@@ -12,7 +12,7 @@ export default function SongList({ songs }: Props) {
 		<ul className={styles.songList}>
 			<SongHeader />
 			{songs.map((song, index) => (
-				<SongItem key={song.id} song={song} index={index} />
+				<SongItem key={song.id} songs={songs} song={song} index={index} />
 			))}
 		</ul>
 	)

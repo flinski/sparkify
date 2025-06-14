@@ -1,6 +1,6 @@
 @use "@/styles/helpers" as *;
 
-.albumItem {
+.artistItem {
 	flex: 0 0 calc(100% / 6);
 	max-width: calc(100% / 6);
 	min-width: 0;
@@ -14,12 +14,12 @@
 	}
 }
 
-.albumCover {
+.artistAvatar {
 	position: relative;
 	width: 100%;
 	aspect-ratio: 1;
 	margin-bottom: to-rem(8);
-	border-radius: var(--border-radius);
+	border-radius: 50%;
 	overflow: hidden;
 	// border: var(--border);
 	box-shadow: 0 to-rem(2) to-rem(16) hsl(0, 0%, 0%, 0.2);
@@ -35,7 +35,7 @@
 	}
 }
 
-.albumTitle {
+.artistName {
 	margin-bottom: to-rem(2);
 	font-weight: 500;
 	overflow: hidden;
@@ -43,18 +43,7 @@
 	text-overflow: ellipsis;
 }
 
-.albumReleaseDateAndArtist {
-	display: inline-flex;
-	column-gap: to-rem(4);
+.artistTitle {
 	font-size: to-rem(14);
 	color: var(--gray-500);
-}
-
-.albumReleaseDate {
-}
-
-.albumArtist {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
 }
