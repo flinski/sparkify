@@ -21,6 +21,12 @@
 	text-align: center;
 	font-size: to-rem(16);
 	font-variant-numeric: tabular-nums;
+
+	div {
+		&:global(.active) {
+			color: var(--brand-600);
+		}
+	}
 }
 
 .songButton {
@@ -38,8 +44,8 @@
 	}
 
 	svg {
-		width: to-rem(24);
-		height: to-rem(24);
+		width: to-rem(20);
+		height: to-rem(20);
 	}
 }
 
@@ -69,8 +75,12 @@
 		margin-left: to-rem(12);
 		cursor: pointer;
 
+		&:global(.active) {
+			color: var(--brand-600);
+		}
+
 		&:hover::before {
-			background-color: var(--gray-950);
+			background-color: currentColor;
 		}
 
 		&::before {

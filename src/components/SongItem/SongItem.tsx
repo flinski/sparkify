@@ -1,10 +1,12 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
+import { useAppSelector } from "@/hooks/redux-hooks"
 import { formatTime } from "@/utils/helpers"
-import { setCurrentIndex, setQueue } from "@/store/audioPlayerSlice"
-import type { TApiFormattedSong } from "@/types/app"
+import { pause, play, setCurrentIndex, setLoading, setQueue } from "@/store/audioPlayerSlice"
 import PlayIcon from "../icons/PlayIcon"
+import PauseIcon from "../icons/PauseIcon"
 import styles from "./SongItem.module.scss"
+import type { TApiFormattedSong } from "@/types/app"
 
 interface Props {
 	songs: TApiFormattedSong[]
@@ -15,13 +17,23 @@ interface Props {
 export default function SongItem({ songs, song, index }: Props) {
 	const [isHovered, setIsHovered] = useState(false)
 	const dispatch = useDispatch()
+	const { currentIndex, isPlaying } = useAppSelector((state) => state.audioPlayer)
 	const artists = song.artists.map((artist) => artist.name).join(" & ")
+	const isActive = currentIndex === index
 
 	const handleToggleSong = () => {
-		console.log(song.title)
 		dispatch(setQueue(songs))
 		dispatch(setCurrentIndex(index))
-		// dispatch(playCurrentSong())
+
+		if (!isActive) {
+			dispatch(setLoading(true))
+		}
+
+		if (isPlaying && isActive) {
+			dispatch(pause())
+		} else {
+			dispatch(play())
+		}
 	}
 
 	return (
@@ -33,17 +45,17 @@ export default function SongItem({ songs, song, index }: Props) {
 			<div className={styles.songIndex}>
 				{isHovered ? (
 					<button className={styles.songButton} onClick={handleToggleSong}>
-						<PlayIcon />
+						{isPlaying && isActive ? <PauseIcon /> : <PlayIcon />}
 					</button>
 				) : (
-					<div>{index + 1}</div>
+					<div className={isActive ? "active" : ""}>{index + 1}</div>
 				)}
 			</div>
-			<div className={styles.songCover}>
+			<div className={styles.songCover} onClick={handleToggleSong}>
 				<img src={song.cover_url} alt={`${song.title} by ${artists}`} />
 			</div>
 			<div className={styles.songTitle}>
-				<span>{song.title}</span>
+				<span className={isActive ? "active" : ""}>{song.title}</span>
 			</div>
 			<div className={styles.songArtist}>{artists}</div>
 			<div className={styles.songAlbum}>{song.album ? song.album.title : "Single"}</div>

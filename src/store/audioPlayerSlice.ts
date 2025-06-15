@@ -1,6 +1,16 @@
+import type { TApiFormattedSong } from "@/types/app"
 import { createSlice } from "@reduxjs/toolkit"
 
-const initialState = {
+interface IState {
+	queue: TApiFormattedSong[]
+	currentIndex: number
+	duration: number
+	currentTime: number
+	isPlaying: boolean
+	isLoading: boolean
+}
+
+const initialState: IState = {
 	queue: [],
 	currentIndex: -1,
 	duration: 0,
@@ -18,9 +28,18 @@ const audioPlayerSlice = createSlice({
 		},
 		setCurrentIndex(state, action) {
 			state.currentIndex = action.payload
+		},
+		setLoading(state, action) {
+			state.isLoading = action.payload
+		},
+		play(state) {
+			state.isPlaying = true
+		},
+		pause(state) {
+			state.isPlaying = false
 		}
 	}
 })
 
-export const { setQueue, setCurrentIndex } = audioPlayerSlice.actions
+export const { setQueue, setCurrentIndex, setLoading, play, pause } = audioPlayerSlice.actions
 export default audioPlayerSlice.reducer

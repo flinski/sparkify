@@ -1,8 +1,9 @@
+import type { TApiFormattedSong } from "@/types/app"
 import Spinner from "../Spinner/Spinner"
 import styles from "./SongInfo.module.scss"
 
 interface Props {
-	song: any
+	song: TApiFormattedSong
 	isLoading: boolean
 }
 
@@ -13,7 +14,7 @@ export default function SongInfo({ song, isLoading }: Props) {
 		<div className={styles.songInfo}>
 			<div className={styles.songCover}>
 				{isLoading ? (
-					<Spinner options={{ isCentered: true, color: "var(--gray-300)" }} />
+					<Spinner options={{ isCentered: true, color: "var(--gray-300)", size: 20 }} />
 				) : (
 					<img src={song.cover_url} alt={`${song.title} by ${artists}`} />
 				)}
