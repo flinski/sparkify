@@ -34,13 +34,11 @@
 	padding: to-rem(6);
 	border: 0;
 	font-size: 0;
-	color: var(--gray-500);
 	background-color: transparent;
 	cursor: pointer;
-	transition-duration: var(--transition-duration);
 
-	&:hover {
-		color: var(--gray-950);
+	&:global(.active) {
+		color: var(--brand-600);
 	}
 
 	svg {
@@ -70,6 +68,10 @@
 }
 
 .songTitle {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
 	span {
 		position: relative;
 		margin-left: to-rem(12);
@@ -77,6 +79,7 @@
 
 		&:global(.active) {
 			color: var(--brand-600);
+			font-weight: 500;
 		}
 
 		&:hover::before {
@@ -95,12 +98,18 @@
 	}
 }
 
-.songArtist {
+.songArtist {margin-left: to-rem(12);
 	color: var(--gray-500);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
-.songAlbum {
+.songAlbum {margin-left: to-rem(12);
 	color: var(--gray-500);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .songDuration {

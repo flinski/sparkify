@@ -44,7 +44,7 @@
 }
 
 .albumReleaseDateAndArtist {
-	display: inline-flex;
+	display: flex;
 	column-gap: to-rem(4);
 	font-size: to-rem(14);
 	color: var(--gray-500);

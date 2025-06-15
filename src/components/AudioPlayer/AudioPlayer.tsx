@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
-import { pause, play, setLoading } from "@/store/audioPlayerSlice"
+import { setLoading } from "@/store/audioPlayerSlice"
 import { useAppSelector } from "@/hooks/redux-hooks"
-import SongInfo from "../SongInfo/SongInfo"
+import SongInfo from "@/components/SongInfo/SongInfo"
+import PlaybackControls from "@/components/PlaybackControls/PlaybackControls"
 import styles from "./AudioPlayer.module.scss"
 
 export default function AudioPlayer() {
@@ -13,33 +14,24 @@ export default function AudioPlayer() {
 
 	const handleLoadSong = () => {
 		dispatch(setLoading(false))
-		dispatch(play())
 		audioRef.current?.play()
 	}
 
 	useEffect(() => {
 		if (isPlaying) {
-			dispatch(play())
 			audioRef.current?.play()
-		} else {
-			dispatch(pause())
+		} else if (currentIndex !== -1) {
 			audioRef.current?.pause()
 		}
-	}, [isPlaying, dispatch])
+	}, [isPlaying, currentIndex, dispatch])
 
 	if (!song) return
 
 	return (
 		<div className={styles.audioPlayer}>
 			<SongInfo isLoading={isLoading} song={song} />
-			<div>
-				<audio
-					ref={audioRef}
-					src={song.audio_url}
-					controls
-					onLoadedMetadata={handleLoadSong}
-				></audio>
-			</div>
+			<audio ref={audioRef} src={song.audio_url} onLoadedMetadata={handleLoadSong}></audio>
+			<PlaybackControls />
 			<div>Actions</div>
 		</div>
 	)
