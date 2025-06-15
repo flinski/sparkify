@@ -37,9 +37,23 @@ const audioPlayerSlice = createSlice({
 		},
 		pause(state) {
 			state.isPlaying = false
+		},
+		nextSong(state) {
+			if (state.currentIndex === state.queue.length - 1) {
+				state.currentIndex = 0
+			} else {
+				state.currentIndex += 1
+			}
+		},
+		prevSong(state) {
+			if (state.currentIndex === 0) {
+				state.currentIndex = state.queue.length - 1
+			} else {
+				state.currentIndex -= 1
+			}
 		}
 	}
 })
 
-export const { setQueue, setCurrentIndex, setLoading, play, pause } = audioPlayerSlice.actions
+export const { setQueue, setCurrentIndex, setLoading, play, pause, nextSong, prevSong } = audioPlayerSlice.actions
 export default audioPlayerSlice.reducer
