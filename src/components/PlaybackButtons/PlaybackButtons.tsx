@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
 import { useAppSelector } from "@/hooks/redux-hooks"
-import { nextSong, pause, play, prevSong } from "@/store/audioPlayerSlice"
+import { nextSong, pause, play, prevSong, setLoading } from "@/store/audioPlayerSlice"
 
 import NextSongIcon from "@/components/icons/NextSongIcon"
 import PrevSongIcon from "@/components/icons/PrevSongIcon"
@@ -23,10 +23,12 @@ export default function PlaybackButtons() {
 
 	const handleNextSong = () => {
 		dispatch(nextSong())
+		dispatch(setLoading(true))
 	}
 
 	const handlePrevSong = () => {
 		dispatch(prevSong())
+		dispatch(setLoading(true))
 	}
 
 	return (

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
-import { setLoading } from "@/store/audioPlayerSlice"
+import { play, setLoading } from "@/store/audioPlayerSlice"
 import { useAppSelector } from "@/hooks/redux-hooks"
 import SongInfo from "@/components/SongInfo/SongInfo"
 import PlaybackControls from "@/components/PlaybackControls/PlaybackControls"
@@ -14,6 +14,7 @@ export default function AudioPlayer() {
 
 	const handleLoadSong = () => {
 		dispatch(setLoading(false))
+		dispatch(play())
 		audioRef.current?.play()
 	}
 
