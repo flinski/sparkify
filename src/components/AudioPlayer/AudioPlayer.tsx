@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
-import { play, setDuration, setLoading } from "@/store/audioPlayerSlice"
+import { nextSong, play, setCurrentTime, setDuration, setLoading } from "@/store/audioPlayerSlice"
 import { useAppSelector } from "@/hooks/redux-hooks"
 
 import SongInfo from "@/components/SongInfo/SongInfo"
@@ -22,6 +22,11 @@ export default function AudioPlayer() {
 		audioRef.current?.play()
 	}
 
+	const handleEndSong = () => {
+		dispatch(nextSong())
+		dispatch(setLoading(true))
+	}
+
 	useEffect(() => {
 		if (isPlaying) {
 			audioRef.current?.play()
@@ -30,12 +35,27 @@ export default function AudioPlayer() {
 		}
 	}, [isPlaying, currentIndex, dispatch])
 
+	useEffect(() => {
+		let intervalId: NodeJS.Timeout
+		if (isPlaying) {
+			intervalId = setInterval(() => {
+				dispatch(setCurrentTime(audioRef.current?.currentTime))
+			}, 1000)
+		}
+		return () => clearInterval(intervalId)
+	}, [isPlaying, dispatch])
+
 	if (!song) return
 
 	return (
 		<div className={styles.audioPlayer}>
 			<SongInfo isLoading={isLoading} song={song} />
-			<audio ref={audioRef} src={song.audio_url} onLoadedMetadata={handleLoadSong}></audio>
+			<audio
+				ref={audioRef}
+				src={song.audio_url}
+				onLoadedMetadata={handleLoadSong}
+				onEnded={handleEndSong}
+			></audio>
 			<PlaybackControls />
 			<ActionControls />
 		</div>

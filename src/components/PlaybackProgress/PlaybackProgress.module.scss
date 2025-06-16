@@ -5,20 +5,47 @@
 	display: flex;
 	align-items: center;
 	column-gap: to-rem(8);
-	font-size: to-rem(14);
+	font-size: to-rem(13);
 	line-height: 1;
 	color: var(--gray-500);
+	font-variant-numeric: tabular-nums;
 }
 
 .currentTime {
+	text-align: right;
 }
 
-.progress {
+.progressBar {
+	position: relative;
 	flex-grow: 1;
 	height: to-rem(4);
 	background-color: var(--gray-200);
 	border-radius: to-rem(4);
+	// overflow: hidden;
+	cursor: pointer;
+}
+
+.progress {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0%;
+	height: 100%;
+	border-radius: to-rem(4);
+	background-color: var(--gray-950);
+}
+
+.progressKnob {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translate(-50%, -50%);
+	width: to-rem(12);
+	height: to-rem(12);
+	border-radius: 50%;
+	background-color: var(--gray-950);
 }
 
 .duration {
+	text-align-last: left;
 }

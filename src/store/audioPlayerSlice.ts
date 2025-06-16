@@ -32,6 +32,9 @@ const audioPlayerSlice = createSlice({
 		setDuration(state, action) {
 			state.duration = action.payload
 		},
+		setCurrentTime(state, action) {
+			state.currentTime = action.payload
+		},
 		setLoading(state, action) {
 			state.isLoading = action.payload
 		},
@@ -62,6 +65,7 @@ export const {
 	setQueue,
 	setCurrentIndex,
 	setDuration,
+	setCurrentTime,
 	setLoading,
 	play,
 	pause,
