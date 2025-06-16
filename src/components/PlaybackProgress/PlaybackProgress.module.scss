@@ -25,6 +25,14 @@
 			width: to-rem(12);
 			height: to-rem(12);
 		}
+
+		.progress {
+			background-color: var(--brand-600);
+		}
+
+		.progressKnob {
+			opacity: 1;
+		}
 	}
 }
 
@@ -44,6 +52,7 @@
 	height: 100%;
 	border-radius: to-rem(4);
 	background-color: var(--gray-950);
+	transition: background-color var(--transition-duration) ease;
 }
 
 .progressKnob {
@@ -54,10 +63,14 @@
 	height: 0;
 	transform: translate(-50%, -50%);
 	border-radius: 50%;
-	background-color: var(--gray-950);
+	background-color: var(--brand-50);
+	border: 2px solid var(--brand-600);
+	box-shadow: 0 0 to-rem(8) hsl(0, 0%, 0%, 0.2);
 	transition:
 		width var(--transition-duration) ease,
-		height var(--transition-duration) ease;
+		height var(--transition-duration) ease,
+		opacity var(--transition-duration) ease;
+	opacity: 0;
 }
 
 .duration {

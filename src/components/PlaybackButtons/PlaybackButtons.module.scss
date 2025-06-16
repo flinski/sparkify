@@ -15,6 +15,11 @@ button {
 	border: none;
 	background-color: transparent;
 	cursor: pointer;
+	transition-duration: var(--transition-duration);
+
+	&:hover {
+		color: var(--brand-600);
+	}
 }
 
 .prevSongButton {

@@ -5,3 +5,33 @@
 	align-items: center;
 	justify-content: flex-end;
 }
+
+.shuffleButton,
+.repeatButton {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: to-rem(40);
+	height: to-rem(40);
+	color: var(--gray-500);
+	transition-duration: var(--transition-duration);
+
+	&:hover {
+		color: var(--gray-950);
+	}
+
+	svg {
+		width: to-rem(18);
+		height: to-rem(18);
+	}
+}
+
+.shuffleButton {
+	svg {
+	}
+}
+
+.repeatButton {
+	svg {
+	}
+}

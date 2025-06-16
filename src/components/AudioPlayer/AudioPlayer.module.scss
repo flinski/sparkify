@@ -5,6 +5,7 @@
 	display: grid;
 	grid-template-columns: 1fr 2.5fr 1fr;
 	padding: to-rem(10);
+	padding-right: to-rem(16);
 	background-color: var(--gray-50);
 	border: var(--border);
 	border-radius: var(--border-radius-huge);

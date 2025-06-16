@@ -24,6 +24,7 @@
 
 	div {
 		&:global(.active) {
+			font-weight: 500;
 			color: var(--brand-600);
 		}
 	}
@@ -78,8 +79,8 @@
 		cursor: pointer;
 
 		&:global(.active) {
-			color: var(--brand-600);
 			font-weight: 500;
+			color: var(--brand-600);
 		}
 
 		&:hover::before {
@@ -98,14 +99,16 @@
 	}
 }
 
-.songArtist {margin-left: to-rem(12);
+.songArtist {
+	margin-left: to-rem(12);
 	color: var(--gray-500);
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
 
-.songAlbum {margin-left: to-rem(12);
+.songAlbum {
+	margin-left: to-rem(12);
 	color: var(--gray-500);
 	overflow: hidden;
 	white-space: nowrap;
