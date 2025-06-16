@@ -29,6 +29,9 @@ const audioPlayerSlice = createSlice({
 		setCurrentIndex(state, action) {
 			state.currentIndex = action.payload
 		},
+		setDuration(state, action) {
+			state.duration = action.payload
+		},
 		setLoading(state, action) {
 			state.isLoading = action.payload
 		},
@@ -55,5 +58,14 @@ const audioPlayerSlice = createSlice({
 	}
 })
 
-export const { setQueue, setCurrentIndex, setLoading, play, pause, nextSong, prevSong } = audioPlayerSlice.actions
+export const {
+	setQueue,
+	setCurrentIndex,
+	setDuration,
+	setLoading,
+	play,
+	pause,
+	nextSong,
+	prevSong
+} = audioPlayerSlice.actions
 export default audioPlayerSlice.reducer
