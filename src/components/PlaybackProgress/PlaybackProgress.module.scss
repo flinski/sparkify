@@ -15,14 +15,25 @@
 	text-align: right;
 }
 
+.progressBarWrapper {
+	flex-grow: 1;
+	padding-block: to-rem(6);
+	cursor: pointer;
+
+	&:hover {
+		.progressKnob {
+			width: to-rem(12);
+			height: to-rem(12);
+		}
+	}
+}
+
 .progressBar {
 	position: relative;
-	flex-grow: 1;
 	height: to-rem(4);
 	background-color: var(--gray-200);
 	border-radius: to-rem(4);
 	// overflow: hidden;
-	cursor: pointer;
 }
 
 .progress {
@@ -39,11 +50,14 @@
 	position: absolute;
 	top: 50%;
 	left: 0;
+	width: 0;
+	height: 0;
 	transform: translate(-50%, -50%);
-	width: to-rem(12);
-	height: to-rem(12);
 	border-radius: 50%;
 	background-color: var(--gray-950);
+	transition:
+		width var(--transition-duration) ease,
+		height var(--transition-duration) ease;
 }
 
 .duration {

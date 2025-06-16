@@ -56,7 +56,7 @@ export default function AudioPlayer() {
 				onLoadedMetadata={handleLoadSong}
 				onEnded={handleEndSong}
 			></audio>
-			<PlaybackControls />
+			<PlaybackControls audioRef={audioRef} />
 			<ActionControls />
 		</div>
 	)

@@ -1,12 +1,16 @@
 import PlaybackButtons from "@/components/PlaybackButtons/PlaybackButtons"
 import PlaybackProgress from "@/components/PlaybackProgress/PlaybackProgress"
-import styles from './PlaybackControls.module.scss'
+import styles from "./PlaybackControls.module.scss"
 
-export default function PlaybackControls() {
+interface Props {
+	audioRef: React.RefObject<HTMLAudioElement | null>
+}
+
+export default function PlaybackControls({ audioRef }: Props) {
 	return (
 		<div className={styles.playbackControls}>
 			<PlaybackButtons />
-			<PlaybackProgress />
+			<PlaybackProgress audioRef={audioRef} />
 		</div>
 	)
 }
