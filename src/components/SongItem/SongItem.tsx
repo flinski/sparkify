@@ -2,7 +2,14 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useAppSelector } from "@/hooks/redux-hooks"
 import { formatTime } from "@/utils/helpers"
-import { pause, play, setCurrentIndex, setLoading, setQueue } from "@/store/audioPlayerSlice"
+import {
+	pause,
+	play,
+	setCurrentIndex,
+	setCurrentSongId,
+	setLoading,
+	setQueue
+} from "@/store/audioPlayerSlice"
 import PlayIcon from "../icons/PlayIcon"
 import PauseIcon from "../icons/PauseIcon"
 import styles from "./SongItem.module.scss"
@@ -17,13 +24,14 @@ interface Props {
 export default function SongItem({ song, index, songs }: Props) {
 	const [isHovered, setIsHovered] = useState(false)
 	const dispatch = useDispatch()
-	const { currentIndex, isPlaying, isLoading } = useAppSelector((state) => state.audioPlayer)
+	const { currentSongId, isPlaying, isLoading } = useAppSelector((state) => state.audioPlayer)
 	const artists = song.artists.map((artist) => artist.name).join(" & ")
-	const isActive = currentIndex === index
+	const isActive = song.id === currentSongId
 
 	const handleToggleSong = () => {
 		dispatch(setQueue(songs))
 		dispatch(setCurrentIndex(index))
+		dispatch(setCurrentSongId(song.id))
 
 		if (!isActive) {
 			dispatch(pause())

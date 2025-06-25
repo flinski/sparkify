@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit"
 interface IState {
 	queue: TApiFormattedSong[]
 	currentIndex: number
+	currentSongId: string
 	duration: number
 	currentTime: number
 	isPlaying: boolean
@@ -15,6 +16,7 @@ interface IState {
 const initialState: IState = {
 	queue: [],
 	currentIndex: -1,
+	currentSongId: "",
 	duration: 0,
 	currentTime: 0,
 	isPlaying: false,
@@ -32,6 +34,9 @@ const audioPlayerSlice = createSlice({
 		},
 		setCurrentIndex(state, action) {
 			state.currentIndex = action.payload
+		},
+		setCurrentSongId(state, action) {
+			state.currentSongId = action.payload
 		},
 		setDuration(state, action) {
 			state.duration = action.payload
@@ -74,6 +79,7 @@ const audioPlayerSlice = createSlice({
 export const {
 	setQueue,
 	setCurrentIndex,
+	setCurrentSongId,
 	setDuration,
 	setCurrentTime,
 	setLoading,

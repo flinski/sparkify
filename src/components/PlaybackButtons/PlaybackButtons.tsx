@@ -1,6 +1,13 @@
 import { useDispatch } from "react-redux"
 import { useAppSelector } from "@/hooks/redux-hooks"
-import { nextSong, pause, play, prevSong, setLoading } from "@/store/audioPlayerSlice"
+import {
+	nextSong,
+	pause,
+	play,
+	prevSong,
+	setCurrentSongId,
+	setLoading
+} from "@/store/audioPlayerSlice"
 
 import NextSongIcon from "@/components/icons/NextSongIcon"
 import PrevSongIcon from "@/components/icons/PrevSongIcon"
@@ -11,7 +18,7 @@ import styles from "./PlaybackButtons.module.scss"
 
 export default function PlaybackButtons() {
 	const dispatch = useDispatch()
-	const { isPlaying, isLoading } = useAppSelector((state) => state.audioPlayer)
+	const { queue, currentIndex, isPlaying, isLoading } = useAppSelector((state) => state.audioPlayer)
 
 	const handleToggleSong = () => {
 		if (isPlaying) {
@@ -23,11 +30,21 @@ export default function PlaybackButtons() {
 
 	const handleNextSong = () => {
 		dispatch(nextSong())
+		if (queue[currentIndex + 1]) {
+			dispatch(setCurrentSongId(queue[currentIndex + 1].id))
+		} else {
+			dispatch(setCurrentSongId(queue[0].id))
+		}
 		dispatch(setLoading(true))
 	}
 
 	const handlePrevSong = () => {
 		dispatch(prevSong())
+		if (queue[currentIndex - 1]) {
+			dispatch(setCurrentSongId(queue[currentIndex - 1].id))
+		} else {
+			dispatch(setCurrentSongId(queue[queue.length - 1].id))
+		}
 		dispatch(setLoading(true))
 	}
 
