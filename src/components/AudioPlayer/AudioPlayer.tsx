@@ -1,6 +1,14 @@
 import { useEffect, useRef } from "react"
+
 import { useDispatch } from "react-redux"
-import { nextSong, play, setCurrentTime, setDuration, setLoading } from "@/store/audioPlayerSlice"
+import {
+	nextSong,
+	play,
+	setCurrentTime,
+	setDuration,
+	startLoading,
+	stopLoading
+} from "@/store/audioPlayerSlice"
 import { useAppSelector } from "@/hooks/redux-hooks"
 
 import SongInfo from "@/components/SongInfo/SongInfo"
@@ -12,58 +20,66 @@ import styles from "./AudioPlayer.module.scss"
 export default function AudioPlayer() {
 	const audioRef = useRef<HTMLAudioElement>(null)
 	const dispatch = useDispatch()
-	const { queue, currentIndex, isPlaying, isLoading, isRepeating } = useAppSelector(
+	const { queue, currentIndex, isPlaying, isRepeating } = useAppSelector(
 		(state) => state.audioPlayer
 	)
+	const audio = audioRef.current
 	const song = queue[currentIndex]
 
-	const handleLoadSong = () => {
-		dispatch(setLoading(false))
-		dispatch(setDuration(audioRef.current?.duration))
-		dispatch(play())
-		audioRef.current?.play()
-	}
+	useEffect(() => {
+		if (!audio) return
 
-	const handleEndSong = () => {
-		dispatch(nextSong())
-		dispatch(setLoading(true))
-	}
+		if (isPlaying) {
+			audio.play()
+		} else {
+			audio.pause()
+		}
+	}, [audio, isPlaying])
 
 	useEffect(() => {
-		if (isPlaying) {
-			audioRef.current?.play()
-		} else if (currentIndex !== -1) {
-			audioRef.current?.pause()
-		}
-	}, [isPlaying, currentIndex])
+		if (!audio || !isPlaying) return
 
-	useEffect(() => {
-		let intervalId: NodeJS.Timeout
-		if (isPlaying) {
-			intervalId = setInterval(() => {
-				dispatch(setCurrentTime(audioRef.current?.currentTime))
-			}, 1000)
+		const updateTime = () => {
+			dispatch(setCurrentTime(audio.currentTime))
 		}
+
+		const intervalId = setInterval(updateTime, 1000)
+
 		return () => clearInterval(intervalId)
-	}, [isPlaying, dispatch])
+	}, [audio, isPlaying, dispatch])
 
 	useEffect(() => {
-		if (audioRef.current) {
-			audioRef.current.loop = isRepeating
-		}
-	}, [isRepeating])
+		if (!audio) return
 
-	if (!song) return
+		audio.loop = isRepeating
+	}, [audio, isRepeating])
+
+	const handleLoadMetadata = () => {
+		if (!audio) return
+
+		dispatch(setDuration(audio.duration))
+		dispatch(stopLoading())
+		dispatch(play())
+		audio.play()
+	}
+
+	const handleEnd = () => {
+		dispatch(nextSong())
+		dispatch(startLoading())
+	}
+
+	if (!song) return null
 
 	return (
 		<div className={styles.audioPlayer}>
-			<SongInfo isLoading={isLoading} song={song} />
 			<audio
 				ref={audioRef}
 				src={song.audio_url}
-				onLoadedMetadata={handleLoadSong}
-				onEnded={handleEndSong}
+				onLoadedMetadata={handleLoadMetadata}
+				onEnded={handleEnd}
 			></audio>
+
+			<SongInfo />
 			<PlaybackControls audioRef={audioRef} />
 			<ActionControls />
 		</div>

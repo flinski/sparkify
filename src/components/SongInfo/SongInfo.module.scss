@@ -6,6 +6,12 @@
 	column-gap: to-rem(8);
 }
 
+.songPlaceholder {
+	width: to-rem(52);
+	height: to-rem(52);
+	border-radius: var(--border-radius);
+}
+
 .songCover {
 	position: relative;
 	width: to-rem(52);

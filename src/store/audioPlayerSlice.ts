@@ -1,12 +1,13 @@
 import type { TApiFormattedSong } from "@/types/app"
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
 
 interface IState {
 	queue: TApiFormattedSong[]
 	currentIndex: number
-	currentSongId: string
 	duration: number
 	currentTime: number
+	volume: number
+	isMuted: boolean
 	isPlaying: boolean
 	isRepeating: boolean
 	isShuffling: boolean
@@ -16,9 +17,10 @@ interface IState {
 const initialState: IState = {
 	queue: [],
 	currentIndex: -1,
-	currentSongId: "",
 	duration: 0,
 	currentTime: 0,
+	volume: 0.8,
+	isMuted: false,
 	isPlaying: false,
 	isRepeating: false,
 	isShuffling: false,
@@ -29,44 +31,50 @@ const audioPlayerSlice = createSlice({
 	name: "audioPlayer",
 	initialState,
 	reducers: {
-		setQueue(state, action) {
+		setQueue: (state, action: PayloadAction<TApiFormattedSong[]>) => {
 			state.queue = action.payload
 		},
-		setCurrentIndex(state, action) {
+		setCurrentIndex: (state, action: PayloadAction<number>) => {
 			state.currentIndex = action.payload
 		},
-		setCurrentSongId(state, action) {
-			state.currentSongId = action.payload
-		},
-		setDuration(state, action) {
+		setDuration: (state, action: PayloadAction<number>) => {
 			state.duration = action.payload
 		},
-		setCurrentTime(state, action) {
+		setCurrentTime: (state, action: PayloadAction<number>) => {
 			state.currentTime = action.payload
 		},
-		setLoading(state, action) {
-			state.isLoading = action.payload
+		startLoading: (state) => {
+			state.isLoading = true
 		},
-		setRepeating(state, action) {
+		stopLoading: (state) => {
+			state.isLoading = false
+		},
+		setRepeating: (state, action: PayloadAction<boolean>) => {
 			state.isRepeating = action.payload
 		},
-		setShuffling(state, action) {
+		setShuffling: (state, action: PayloadAction<boolean>) => {
 			state.isShuffling = action.payload
 		},
-		play(state) {
+		mute: (state) => {
+			state.isMuted = true
+		},
+		unmute: (state) => {
+			state.isMuted = false
+		},
+		play: (state) => {
 			state.isPlaying = true
 		},
-		pause(state) {
+		pause: (state) => {
 			state.isPlaying = false
 		},
-		nextSong(state) {
+		nextSong: (state) => {
 			if (state.currentIndex === state.queue.length - 1) {
 				state.currentIndex = 0
 			} else {
 				state.currentIndex += 1
 			}
 		},
-		prevSong(state) {
+		prevSong: (state) => {
 			if (state.currentIndex === 0) {
 				state.currentIndex = state.queue.length - 1
 			} else {
@@ -79,12 +87,14 @@ const audioPlayerSlice = createSlice({
 export const {
 	setQueue,
 	setCurrentIndex,
-	setCurrentSongId,
 	setDuration,
 	setCurrentTime,
-	setLoading,
+	startLoading,
+	stopLoading,
 	setRepeating,
 	setShuffling,
+	mute,
+	unmute,
 	play,
 	pause,
 	nextSong,

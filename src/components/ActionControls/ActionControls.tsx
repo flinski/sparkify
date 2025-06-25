@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux"
 import {
 	setCurrentIndex,
-	setCurrentSongId,
 	setQueue,
 	setRepeating,
 	setShuffling
@@ -22,7 +21,7 @@ export default function ActionControls() {
 		if (!isShuffling) {
 			const shuffledSongs = shuffleSongs(queue)
 			dispatch(setCurrentIndex(0))
-			dispatch(setCurrentSongId(shuffledSongs[0].id))
+			// dispatch(setCurrentSongId(shuffledSongs[0].id))
 			dispatch(setQueue(shuffledSongs))
 		}
 		dispatch(setShuffling(!isShuffling))

@@ -15,7 +15,7 @@ button {
 	border: none;
 	background-color: transparent;
 	cursor: pointer;
-	transition-duration: var(--transition-duration);
+	// transition-duration: var(--transition-duration);
 
 	&:hover {
 		color: var(--brand-600);
@@ -28,6 +28,12 @@ button {
 
 .playPauseButton {
 	padding: to-rem(8);
+
+	&[disabled] {
+		color: var(--gray-500);
+		cursor: not-allowed;
+		pointer-events: none;
+	}
 }
 
 .nextSongButton {
