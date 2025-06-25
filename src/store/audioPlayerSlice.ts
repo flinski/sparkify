@@ -7,6 +7,8 @@ interface IState {
 	duration: number
 	currentTime: number
 	isPlaying: boolean
+	isRepeating: boolean
+	isShuffling: boolean
 	isLoading: boolean
 }
 
@@ -16,6 +18,8 @@ const initialState: IState = {
 	duration: 0,
 	currentTime: 0,
 	isPlaying: false,
+	isRepeating: false,
+	isShuffling: false,
 	isLoading: false
 }
 
@@ -37,6 +41,12 @@ const audioPlayerSlice = createSlice({
 		},
 		setLoading(state, action) {
 			state.isLoading = action.payload
+		},
+		setRepeating(state, action) {
+			state.isRepeating = action.payload
+		},
+		setShuffling(state, action) {
+			state.isShuffling = action.payload
 		},
 		play(state) {
 			state.isPlaying = true
@@ -67,6 +77,8 @@ export const {
 	setDuration,
 	setCurrentTime,
 	setLoading,
+	setRepeating,
+	setShuffling,
 	play,
 	pause,
 	nextSong,

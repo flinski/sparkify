@@ -27,11 +27,19 @@
 }
 
 .shuffleButton {
+	&:global(.active) {
+		color: var(--brand-600);
+	}
+
 	svg {
 	}
 }
 
 .repeatButton {
+	&:global(.active) {
+		color: var(--brand-600);
+	}
+
 	svg {
 	}
 }

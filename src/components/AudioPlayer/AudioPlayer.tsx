@@ -12,7 +12,9 @@ import styles from "./AudioPlayer.module.scss"
 export default function AudioPlayer() {
 	const audioRef = useRef<HTMLAudioElement>(null)
 	const dispatch = useDispatch()
-	const { queue, currentIndex, isPlaying, isLoading } = useAppSelector((state) => state.audioPlayer)
+	const { queue, currentIndex, isPlaying, isLoading, isRepeating } = useAppSelector(
+		(state) => state.audioPlayer
+	)
 	const song = queue[currentIndex]
 
 	const handleLoadSong = () => {
@@ -33,7 +35,7 @@ export default function AudioPlayer() {
 		} else if (currentIndex !== -1) {
 			audioRef.current?.pause()
 		}
-	}, [isPlaying, currentIndex, dispatch])
+	}, [isPlaying, currentIndex])
 
 	useEffect(() => {
 		let intervalId: NodeJS.Timeout
@@ -44,6 +46,12 @@ export default function AudioPlayer() {
 		}
 		return () => clearInterval(intervalId)
 	}, [isPlaying, dispatch])
+
+	useEffect(() => {
+		if (audioRef.current) {
+			audioRef.current.loop = isRepeating
+		}
+	}, [isRepeating])
 
 	if (!song) return
 

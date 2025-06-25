@@ -21,6 +21,6 @@ export async function getSongs(): Promise<TApiFormattedSong[]> {
 		...song,
 		artists: song.artists.map((a) => a.artist)
 	}))
-
+	
 	return songs
 }

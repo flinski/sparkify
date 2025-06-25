@@ -1,4 +1,5 @@
 import { useSongs } from "@/hooks/useSongs"
+
 import Spinner from "@/components/Spinner/Spinner"
 import Message from "@/components/Message/Message"
 import Heading from "@/components/Heading/Heading"
@@ -12,6 +13,8 @@ export default function SongsPage() {
 	}
 
 	if (error) {
+		console.error(error)
+
 		return (
 			<Message options={{ isCentered: true }}>
 				Something went wrong. Please try again later.
@@ -19,12 +22,16 @@ export default function SongsPage() {
 		)
 	}
 
-	console.log(songs)
+	console.log("songs:", songs)
 
 	return (
 		<div>
 			<Heading>Songs</Heading>
-			{songs ? <SongList songs={songs} /> : null}
+			{songs && songs.length !== 0 ? (
+				<SongList songs={songs} />
+			) : (
+				<Message options={{ isCentered: true }}>No songs found.</Message>
+			)}
 		</div>
 	)
 }

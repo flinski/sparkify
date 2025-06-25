@@ -1,5 +1,5 @@
-import styles from "./Heading.module.scss"
 import type { ReactNode } from "react"
+import styles from "./Heading.module.scss"
 
 interface Props {
 	children?: ReactNode

@@ -14,7 +14,7 @@ interface Props {
 	index: number
 }
 
-export default function SongItem({ songs, song, index }: Props) {
+export default function SongItem({ song, index, songs }: Props) {
 	const [isHovered, setIsHovered] = useState(false)
 	const dispatch = useDispatch()
 	const { currentIndex, isPlaying, isLoading } = useAppSelector((state) => state.audioPlayer)
@@ -47,8 +47,8 @@ export default function SongItem({ songs, song, index }: Props) {
 				{isHovered ? (
 					<button
 						className={`${styles.songButton} ${isActive ? "active" : ""}`}
-						onClick={handleToggleSong}
 						disabled={isActive && isLoading}
+						onClick={handleToggleSong}
 					>
 						{isPlaying && isActive ? <PauseIcon /> : <PlayIcon />}
 					</button>
