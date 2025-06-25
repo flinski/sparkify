@@ -1,15 +1,12 @@
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 
 import { useDispatch } from "react-redux"
-import {
-	nextSong,
-	play,
-	setCurrentTime,
-	setDuration,
-	startLoading,
-	stopLoading
-} from "@/store/audioPlayerSlice"
+import { nextSong, play, setDuration, startLoading, stopLoading } from "@/store/audioPlayerSlice"
 import { useAppSelector } from "@/hooks/redux-hooks"
+
+import { useAudioPlayback } from "@/hooks/useAudioPlayback"
+import { useAudioTimeUpdate } from "@/hooks/useAudioTimeUpdate"
+import { useAudioLoop } from "@/hooks/useAudioLoop"
 
 import SongInfo from "@/components/SongInfo/SongInfo"
 import PlaybackControls from "@/components/PlaybackControls/PlaybackControls"
@@ -23,44 +20,19 @@ export default function AudioPlayer() {
 	const { queue, currentIndex, isPlaying, isRepeating } = useAppSelector(
 		(state) => state.audioPlayer
 	)
-	const audio = audioRef.current
 	const song = queue[currentIndex]
 
-	useEffect(() => {
-		if (!audio) return
-
-		if (isPlaying) {
-			audio.play()
-		} else {
-			audio.pause()
-		}
-	}, [audio, isPlaying])
-
-	useEffect(() => {
-		if (!audio || !isPlaying) return
-
-		const updateTime = () => {
-			dispatch(setCurrentTime(audio.currentTime))
-		}
-
-		const intervalId = setInterval(updateTime, 1000)
-
-		return () => clearInterval(intervalId)
-	}, [audio, isPlaying, dispatch])
-
-	useEffect(() => {
-		if (!audio) return
-
-		audio.loop = isRepeating
-	}, [audio, isRepeating])
+	useAudioPlayback(audioRef.current, isPlaying)
+	useAudioTimeUpdate(audioRef.current, isPlaying)
+	useAudioLoop(audioRef.current, isRepeating)
 
 	const handleLoadMetadata = () => {
-		if (!audio) return
+		if (!audioRef.current) return
 
-		dispatch(setDuration(audio.duration))
 		dispatch(stopLoading())
+		dispatch(setDuration(audioRef.current.duration))
 		dispatch(play())
-		audio.play()
+		audioRef.current.play()
 	}
 
 	const handleEnd = () => {
@@ -80,7 +52,7 @@ export default function AudioPlayer() {
 			></audio>
 
 			<SongInfo />
-			<PlaybackControls audioRef={audioRef} />
+			<PlaybackControls audio={audioRef.current} />
 			<ActionControls />
 		</div>
 	)

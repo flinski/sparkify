@@ -1,10 +1,5 @@
 import { useDispatch } from "react-redux"
-import {
-	setCurrentIndex,
-	setQueue,
-	setRepeating,
-	setShuffling
-} from "@/store/audioPlayerSlice"
+import { setCurrentIndex, setQueue, setRepeating, setShuffling } from "@/store/audioPlayerSlice"
 
 import RepeatIcon from "../icons/RepeatIcon"
 import ShuffleIcon from "../icons/ShuffleIcon"
@@ -18,13 +13,13 @@ export default function ActionControls() {
 	const { queue, isRepeating, isShuffling } = useAppSelector((state) => state.audioPlayer)
 
 	const handleShuffleSongs = () => {
+		dispatch(setShuffling(!isShuffling))
+		
 		if (!isShuffling) {
 			const shuffledSongs = shuffleSongs(queue)
 			dispatch(setCurrentIndex(0))
-			// dispatch(setCurrentSongId(shuffledSongs[0].id))
 			dispatch(setQueue(shuffledSongs))
 		}
-		dispatch(setShuffling(!isShuffling))
 	}
 
 	const handleRepeatSong = () => {

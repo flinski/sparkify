@@ -11,7 +11,7 @@ import styles from "./PlaybackButtons.module.scss"
 
 export default function PlaybackButtons() {
 	const dispatch = useDispatch()
-	const { queue, currentIndex, isPlaying, isLoading } = useAppSelector((state) => state.audioPlayer)
+	const { isPlaying, isLoading } = useAppSelector((state) => state.audioPlayer)
 
 	const handleToggleSong = () => {
 		if (isPlaying) {
@@ -23,21 +23,11 @@ export default function PlaybackButtons() {
 
 	const handleNextSong = () => {
 		dispatch(nextSong())
-		if (queue[currentIndex + 1]) {
-			// dispatch(setCurrentSongId(queue[currentIndex + 1].id))
-		} else {
-			// dispatch(setCurrentSongId(queue[0].id))
-		}
 		dispatch(startLoading())
 	}
 
 	const handlePrevSong = () => {
 		dispatch(prevSong())
-		if (queue[currentIndex - 1]) {
-			// dispatch(setCurrentSongId(queue[currentIndex - 1].id))
-		} else {
-			// dispatch(setCurrentSongId(queue[queue.length - 1].id))
-		}
 		dispatch(startLoading())
 	}
 

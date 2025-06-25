@@ -17,14 +17,13 @@ interface Props {
 export default function SongItem({ song, index, songs }: Props) {
 	const [isHovered, setIsHovered] = useState(false)
 	const dispatch = useDispatch()
-	const { currentIndex, isPlaying, isLoading } = useAppSelector((state) => state.audioPlayer)
+	const { queue, currentIndex, isPlaying, isLoading } = useAppSelector((state) => state.audioPlayer)
 	const artists = song.artists.map((artist) => artist.name).join(" & ")
-	const isActive = currentIndex === index
+	const isActive = song.id === queue[currentIndex].id
 
 	const handleToggleSong = () => {
 		dispatch(setQueue(songs))
 		dispatch(setCurrentIndex(index))
-		// dispatch(setCurrentSongId(song.id))
 
 		if (!isActive) {
 			dispatch(pause())

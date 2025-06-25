@@ -9,6 +9,10 @@
 	line-height: 1;
 	color: var(--gray-500);
 	font-variant-numeric: tabular-nums;
+
+	&:global(.disabled) {
+		pointer-events: none;
+	}
 }
 
 .currentTime {

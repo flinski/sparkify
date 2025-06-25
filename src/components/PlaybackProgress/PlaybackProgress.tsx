@@ -5,12 +5,12 @@ import { useDispatch } from "react-redux"
 import { setCurrentTime } from "@/store/audioPlayerSlice"
 
 interface Props {
-	audioRef: React.RefObject<HTMLAudioElement | null>
+	audio: HTMLAudioElement | null
 }
 
-export default function PlaybackProgress({ audioRef }: Props) {
+export default function PlaybackProgress({ audio }: Props) {
 	const dispatch = useDispatch()
-	const { currentTime, duration } = useAppSelector((state) => state.audioPlayer)
+	const { currentTime, duration, isLoading } = useAppSelector((state) => state.audioPlayer)
 	const progressPosition = (currentTime / duration) * 100
 
 	const handleChangeCurrentTime = (e: React.MouseEvent<HTMLElement>) => {
@@ -19,14 +19,16 @@ export default function PlaybackProgress({ audioRef }: Props) {
 		const clickX = e.clientX - rect.x
 		const positionPercent = (clickX / rect.width) * 100
 		const newTime = (duration * positionPercent) / 100
-		if (audioRef.current) {
-			audioRef.current.currentTime = newTime
+
+		if (audio) {
+			audio.currentTime = newTime
 		}
+
 		dispatch(setCurrentTime(newTime))
 	}
 
 	return (
-		<div className={styles.playbackProgress}>
+		<div className={`${styles.playbackProgress} ${isLoading ? "disabled" : ""}`}>
 			<div className={styles.currentTime}>{formatTime(currentTime * 1000)}</div>
 			<div className={styles.progressBarWrapper} onClick={handleChangeCurrentTime}>
 				<div className={styles.progressBar}>
