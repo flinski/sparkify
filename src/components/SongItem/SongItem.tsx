@@ -19,7 +19,7 @@ export default function SongItem({ song, index, songs }: Props) {
 	const dispatch = useDispatch()
 	const { queue, currentIndex, isPlaying, isLoading } = useAppSelector((state) => state.audioPlayer)
 	const artists = song.artists.map((artist) => artist.name).join(" & ")
-	const isActive = song.id === queue[currentIndex].id
+	const isActive = song.id === queue[currentIndex]?.id
 
 	const handleToggleSong = () => {
 		dispatch(setQueue(songs))
